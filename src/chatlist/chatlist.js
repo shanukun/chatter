@@ -21,7 +21,7 @@ function ChatList(props) {
     }
     
     const selectChat = (index) => {
-        console.log('select chat', index);
+        props.selectChatFn(index);
     }
 
     if (props.chats.length > 0) {
