@@ -55,7 +55,7 @@ function LoginComponent(props) {
 				<form className={classes.form} onSubmit={(e) => submitLogin(e)}>
 					<FormControl required fullWidth margin='normal'>
 						<InputLabel htmlFor='login-email-input'>Enter Your Email</InputLabel>
-						<Input autocomplete='email' autoFocus id='login-email-input' onChange={(e) => userTyping('email', e)} />
+						<Input autoComplete='email' autoFocus id='login-email-input' onChange={(e) => userTyping('email', e)} />
 					</FormControl>
 					<FormControl required fullWidth margin='normal'>
 						<InputLabel htmlFor='login-password-input'>Enter Your Password</InputLabel>
