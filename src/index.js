@@ -5,8 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import LoginComponent from './login/login';
-import SignupComponent from './login/signup';
-import DashboardComponent from './login/dashboard';
+import SignupComponent from './signup/signup';
+import DashboardComponent from './dashboard/dashboard';
 
 
 const firebase = require("firebase");
