@@ -23,6 +23,9 @@ function ChatList(props) {
     const selectChat = (index) => {
         props.selectChatFn(index);
     }
+    const userIsSender = (chat) => {
+        return chat.messages[chat.messages.length - 1].sender === props.userEmail;
+    }
 
     if (props.chats.length > 0) {
         return (
@@ -52,12 +55,19 @@ function ChatList(props) {
                                                     </React.Fragment>
                                                 } >
                                             </ListItemText>
+                                            {
+                                                _chat.receiverHasRead === false && !userIsSender(_chat) ?
+                                                <ListItemIcon>
+                                                    <NotificationImportant className={classes.unreadMessage} />
+                                                </ListItemIcon> :
+                                                null
+
+                                            }
                                     </ListItem>
                                     <Divider></Divider>
                                 </div>
                             );
                         })
-
                     }
                 </List>
             </main>

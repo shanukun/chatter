@@ -34,8 +34,9 @@ function DashboardComponent(props) {
         })
     }, []);
 
-    const selectChat = (chatIndex) => {
-        setSelectedChat(chatIndex);
+    const selectChat = async (chatIndex) => {
+        await setSelectedChat(chatIndex);
+        messageRead();
     }
     const submitMessage = (msg) => {
         const docKey = buildDocKey(chats[selectedChat].users.filter(_usr => _usr !== email)[0]);
@@ -63,6 +64,22 @@ function DashboardComponent(props) {
         firebase.auth().signOut();
     }
 
+    const messageRead = () => {
+        const docKey = buildDocKey(chats[selectedChat].users.filter(_usr => _usr !== email)[0]);
+        if (clickedChatWhereNotSender(selectedChat)) {
+            firebase
+                .firestore()
+                .collection('chats')
+                .doc(docKey)
+                .update({ receiverHasRead: true })
+        } else {
+
+        }
+    }
+    const clickedChatWhereNotSender = (chatIndex) => {
+        return chats[chatIndex].messages[chats[chatIndex].messages.length - 1].sender !== email;
+    }
+
     return (
 		<div>
             <ChatList history={props.history} 
@@ -79,7 +96,7 @@ function DashboardComponent(props) {
             }
             {
                 selectedChat !== null && !newChatFormVisible ?
-                <ChatTextBoxComponent submitMessageFn={submitMessage} /> :
+                <ChatTextBoxComponent messageReadFn={messageRead} submitMessageFn={submitMessage} /> :
                 null
             }
             <Button className={classes.signOutBtn} onClick={signOut}>Sign Out</Button>

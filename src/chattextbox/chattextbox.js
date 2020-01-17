@@ -18,6 +18,7 @@ function ChatTextBoxComponent(props) {
 	}
 
 	const userClickedInput = (txt) => {
+		props.messageReadFn();
 	}
 	
 	const submitMessage = () => {
