@@ -17,7 +17,7 @@ function ChatList(props) {
     const { classes } = props;
 
     const newChat = () => {
-
+        props.newChatBtnFn();
     }
     
     const selectChat = (index) => {
